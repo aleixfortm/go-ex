@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
+
+// Treat this file as a class
 
 // create a new type of "deck"
 // which is a slice of strings
@@ -29,4 +34,10 @@ func (d deck) print() {
 
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
+}
+
+// remember that d deck is the receiver of the function, which makes it sort of a "method" of the "class",
+// where only the deck type can access it.
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",")
 }
