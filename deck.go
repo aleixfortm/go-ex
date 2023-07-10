@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"os"
 	"strings"
 )
 
@@ -40,4 +42,19 @@ func deal(d deck, handSize int) (deck, deck) {
 // where only the deck type can access it.
 func (d deck) toString() string {
 	return strings.Join([]string(d), ",")
+}
+
+// also adding deck receiver so that only type deck can access it, and nothing else
+func (d deck) saveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
+}
+
+func newDeckFromFile(filename string) deck {
+	bs, err := ioutil.ReadFile(filename)
+	if err != nil {
+		// Option #1 - Log the error and return a call to newDeck()
+		// Option #2 - Log the error and entirely quit the program
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
 }
