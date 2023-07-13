@@ -14,9 +14,13 @@ func main() {
 	// here we use square brackets instead
 
 	// deleting key-value pairs from a map
-	delete(colors, "red")
-	delete(colors2, 1)
+	//delete(colors, "red")
 
-	fmt.Println(colors)
-	fmt.Println(colors2)
+	printMap(colors)
+}
+
+func printMap(c map[string]string) {
+	for color, hex := range c {
+		fmt.Println("Hex code for", color, "is", hex)
+	}
 }
