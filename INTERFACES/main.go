@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// this new type implements a function that is applicable to any type of the program that have de getGreeting function and return a string from it
 type bot interface {
 	getGreeting() string
 }
